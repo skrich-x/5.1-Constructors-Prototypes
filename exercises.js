@@ -39,14 +39,37 @@ function expect(target) {
 // Only add code to *THIS* section!
 
 
-function Dog(){
-  this.status = 'normal';
-  this.hungry = true;
-}
+var Dog = function(state){
+this.status = 'normal';
+  this.color = 'black';
+  this.owner = null;
+  this.hungry = false;
 
-function Human(){
-  this.cool = false;
-}
+  if ( state === undefined){
+   state = {};
+  }
+ if(state.hungry === undefined) {
+    this.hungry = true;
+  }
+};
+
+var Human = function(personality){
+  this.cool = true;
+  if ( personality === undefined){
+    personality = {};
+  }
+  if (personality.cool === undefined){
+    this.cool = false;
+  }
+};
+
+Human.prototype.feed = function(Dog){
+  Dog.hungry = false;
+};
+
+Human.prototype.pet = function(Dog){
+  Dog.status = 'happy';
+};
 //        __
 //   ____/ /___  ____ ______
 //  / __  / __ \/ __ `/ ___/
